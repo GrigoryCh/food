@@ -40,11 +40,11 @@ if (menuLinks.length > 0){/*Если есть проходим по их спи�
 		/*Проверить заполнен ли data-goto атрибут и существует ли объект, на который он ссылается */
 		if (menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)){
 			const gotoBlock = document.querySelector(menuLink.dataset.goto);
-			const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset;
+			const gotoBlockValue = gotoBlock.getBoundingClientRect().top + scrollY;
 			//- document.querySelector('header').offsetHeight; должна быть высота шапки, но ее здесь нет
 			// так как main-block фулл скриновый				
 			//gotoBlock.getBoundingClientRect().top это Y-координата блока относительно окна браузера
-			//pageYOffset это количество прокрученных пикселей
+			//scrollY это новый вариант pageYOffset это количество прокрученных пикселей
 
 			// Закрывать меню Бургер при клике
 			// Если меню Бургер активно
@@ -54,8 +54,7 @@ if (menuLinks.length > 0){/*Если есть проходим по их спи�
 				iconMenu.classList.remove('_active');
 				bodyMenu.classList.remove('_active');
 			}
-
-						
+         
 			window.scrollTo({ /*Прокрутить к верху блока, указанного в data-goto в html плавно*/
 				top: gotoBlockValue,
 				behavior: "smooth"
