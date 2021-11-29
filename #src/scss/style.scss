@@ -11,13 +11,13 @@
 // <Адаптивное свойство>
 @mixin adaptive-value($property, $startSize, $minSize, $type) {
    $addSize: $startSize - $minSize;
-   @if type==1 {
+   @if $type==1 {
       // Только если меньше контейнера
       #{$property}: $startSize + px;
       @media (max-width: #{$maxWidthContainer + px}) {
          #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
       }
-   } @else if type==2 {
+   } @else if $type==2 {
       // Только если больше контейнера
       #{$property}: $startSize + px;
       @media (min-width: #{$maxWidthContainer + px}) {
@@ -138,51 +138,96 @@ body {
 }
 //<BUTTONS (a.btn+tab)>========================================================================
 .btn {
+   position: relative;
    display: inline-flex;
    justify-content: center;
    align-items: center;
    text-align: center;
    padding: 0px 30px;
-   transition: all 0.3s ease;
    min-height: 54px;
-   background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
    border-radius: 10px;
    font-weight: 500;
    line-height: 1.5;
+   transition: all 0.3s ease;
    color: #ffffff;
+   background: #ffffff;
+   span {
+      position: relative;
+   }
+   &::before {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 10px;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
+   }
    @media (max-width: $md3+px) {
       width: 100%;
    }
    @media (any-hover: hover) {
       &:hover {
          color: #f6762c;
-         background: #ffffff;
+         &::before {
+            opacity: 0;
+         }
       }
    }
    
    // .btn_b
 
    &_b {
-      background: linear-gradient(180deg, #190c05 0%, rgba(25, 12, 5, 0.79) 100%);
+      background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
+      &::before {
+         content: " ";
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         border-radius: 10px;
+         opacity: 1;
+         transition: all 0.3s ease;
+         background: linear-gradient(180deg, #190c05 0%, rgba(25, 12, 5, 0.79) 100%);
+      }
       @media (any-hover: hover) {
          &:hover {
             color: #ffffff;
-            background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
+            &::before {
+            opacity: 0;
+            }
          }
       }
    }
    &_w {
       color: #f6762c;
-      background: #ffffff;
+      background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
       border: 2px solid #f6762c;
-      background: #fff;
+      &::before {
+         content: " ";
+         position: absolute;
+         width: 100%;
+         height: 100%;
+         top: 0;
+         left: 0;
+         border-radius: 10px;
+         opacity: 1;
+         transition: all 0.3s ease;
+         background: #ffffff;
+      }
       @media (max-width: $md3+px) {
          width: inherit;
       }
       @media (any-hover: hover) {
          &:hover {
             color: #fff;
-            background: linear-gradient(180deg, #f6762c 0%, #c65311 100%);
+            &::before { 
+               opacity: 0;
+            }
          }
       }
    }
@@ -509,6 +554,16 @@ body {
    &__button {
       display: flex;
       place-items: center;
+      transition: all 0.3s ease 0s;
+      opacity: 0.9;
+      border-radius: 5px;
+      overflow: hidden;
+       @media (any-hover: hover){
+         &:hover {
+            box-shadow: 5px 5px rgba(32, 22, 22, 0.2); 
+            border-radius: 5px;
+         }
+      }
    }
 
    // .download__image

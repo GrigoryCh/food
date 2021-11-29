@@ -139,19 +139,19 @@
             transition: transform 0.3s ease 0s; // Анимация стрелки спойлера
          }
          &:before {
-            transform: rotate(40deg);
+            transform: rotate(-40deg);
             right: 0;
          }
          &:after {
-            transform: rotate(-40deg);
+            transform: rotate(40deg);
             right: 6px;
          }
          &._active { // Анимация стрелки спойлера
             &:before {
-               transform: rotate(-40deg);
+               transform: rotate(40deg);
             }
             &:after {
-               transform: rotate(40deg);
+               transform: rotate(-40deg);
             }
          }
      }
@@ -259,6 +259,7 @@
 
    &__items {
       display: grid;
+      justify-items: start;
       gap: 15px;
    }
 
@@ -274,6 +275,7 @@
       transition: color 0.3s ease 0s;
       }
       &::before {
+      transition: color 0.3s ease 0s;
       margin: 0 11px 0 0;
       color: $mainColor;
       }
